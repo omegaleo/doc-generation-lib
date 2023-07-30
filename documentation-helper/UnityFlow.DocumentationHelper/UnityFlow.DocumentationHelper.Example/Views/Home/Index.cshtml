@@ -8,10 +8,11 @@
     @foreach (var doc in @Model)
     {
         <h3>@doc.AssemblyName</h3>
-        <h4>@doc.ClassName</h4>
+        <h4>@doc.Namespace</h4>
+        <h5>@doc.ClassName</h5>
         @foreach (var desc in doc.Descriptions)
         {
-            <h5>@desc.Title</h5>
+            <h6>@desc.Title</h6>
             <p>@Html.Raw(desc.Description)</p>
         }
         <br/>

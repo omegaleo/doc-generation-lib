@@ -24,11 +24,12 @@ class Program
         foreach (var doc in docs)
         {
             documentation += $"# {doc.AssemblyName}{Environment.NewLine}  ";
-            documentation += $"## {doc.ClassName}{Environment.NewLine}  ";
+            documentation += $"## {doc.Namespace}{Environment.NewLine}  ";
+            documentation += $"### {doc.ClassName}{Environment.NewLine}  ";
 
             foreach (var desc in doc.Descriptions)
             {
-                documentation += $"### {desc.Title}{Environment.NewLine}  ";
+                documentation += $"#### {desc.Title}{Environment.NewLine}  ";
                 documentation += $"{desc.Description}{Environment.NewLine}  ";
             }
         }

@@ -5,12 +5,14 @@ namespace UnityFlow.DocumentationHelper.Library.Models
     public class DocumentationStructure
     {
         public string AssemblyName;
+        public string Namespace;
         public string ClassName;
         public List<DocumentationDescription> Descriptions;
 
-        public DocumentationStructure(string assemblyName, string className)
+        public DocumentationStructure(string assemblyName, string nameSpace, string className)
         {
             AssemblyName = assemblyName;
+            Namespace = nameSpace;
             ClassName = className;
             Descriptions = new List<DocumentationDescription>();
         }
@@ -25,11 +27,13 @@ namespace UnityFlow.DocumentationHelper.Library.Models
     {
         public string Title;
         public string Description;
-
-        public DocumentationDescription(string title, string description, string[]? args)
+        public string[] Args;
+        
+        public DocumentationDescription(string title, string description, string[] args = null)
         {
             Title = title;
-            Description = string.Format(description, args);
+            Description = description;
+            Args = args;
         }
     }
 }

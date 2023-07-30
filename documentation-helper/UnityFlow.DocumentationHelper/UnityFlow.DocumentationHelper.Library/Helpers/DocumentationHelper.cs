@@ -15,8 +15,7 @@ namespace UnityFlow.DocumentationHelper.Library.Helpers
 <b>Title</b>: Title what we're generating documentation for<br />
 <b>Description</b>: Description of what we're generating documentation for, this can contain usage examples and can use the args array to pass names(e.g.: This method uses this methodology)<br>
 <br>
-Note: If generateForPackageAssembly is set to true, this will generate documentation for the library as well.<br>", 
-        args:new []{nameof(DocumentationStructure)})]
+Note: If generateForPackageAssembly is set to true, this will generate documentation for the library as well.<br>")]
     public static IEnumerable<DocumentationStructure> GenerateDocumentation(bool generateForPackageAssembly = false)
     {
         var assemblies = AppDomain.CurrentDomain.GetAssemblies()
@@ -49,7 +48,7 @@ Note: If generateForPackageAssembly is set to true, this will generate documenta
         var propertyDocs = type.GetProperties().SelectMany(p => p.GetCustomAttributes(typeof(DocumentationAttribute), true).Select(x => (DocumentationAttribute)x));
         var methodDocs = type.GetMethods().SelectMany(m => m.GetCustomAttributes(typeof(DocumentationAttribute), true).Select(x => (DocumentationAttribute)x));
 
-        var docStructure = new DocumentationStructure(assemblyName, type.Name);
+        var docStructure = new DocumentationStructure(assemblyName, type.Namespace?.Replace(assemblyName + ".", "") ?? "", type.Name);
         
         foreach (var doc in classDocs)
         {
